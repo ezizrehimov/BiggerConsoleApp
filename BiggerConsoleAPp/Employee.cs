@@ -19,13 +19,33 @@ namespace BiggerConsoleAPp
             get { return _fullName; }
             set
             {
-                if (CheckWords(value) ) _fullName = value;
+                if (CheckWords(value)) _fullName = value;
                 else Console.WriteLine("Ad sertlere uygun deyil.");
             }
         }
-        public string Position { get; set; }
 
-        public double Salary { get; set; }
+        private string _position;
+
+        public string Position
+        {
+            get { return _position; }
+            set
+            {
+                if (value.Length >= 2) _position = value;
+                else Console.WriteLine("Pozisiya sertlere uygun deyil.");
+            }
+        }
+
+        private double _salary;
+        public double Salary
+        {
+            get { return _salary; }
+            set
+            {
+                if (value >= 250) _salary = value;
+                else Console.WriteLine("Maash 250-den asagi ola bilmez.");
+            }
+        }
 
         public string DepartmentName { get; set; }
         public string EmployeeType { get; set; }
@@ -48,7 +68,7 @@ namespace BiggerConsoleAPp
             Console.WriteLine(Fullname, No, DepartmentName);
         }
 
-   
+
 
         // yalniz herflerden ibaret olmagini check edir.
         public bool CheckOnlyChar(string value)
