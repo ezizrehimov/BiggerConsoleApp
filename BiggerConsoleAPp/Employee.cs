@@ -19,8 +19,8 @@ namespace BiggerConsoleAPp
             get { return _fullName; }
             set
             {
-                if (CheckOnlyChar(value)) _fullName = value;
-                else Console.WriteLine("Ad yalniz herflerden ibaret olmalidir.");
+                if (CheckWords(value) ) _fullName = value;
+                else Console.WriteLine("Ad sertlere uygun deyil.");
             }
         }
         public string Position { get; set; }
@@ -37,12 +37,20 @@ namespace BiggerConsoleAPp
             No = DepartmentName.Substring(0, 2).ToUpper() + id;
         }
 
+        public Employee(string fullName, double salary)
+        {
+            Salary = salary;
+            Fullname = fullName;
+        }
+
         public void info()
         {
             Console.WriteLine(Fullname, No, DepartmentName);
         }
 
+   
 
+        // yalniz herflerden ibaret olmagini check edir.
         public bool CheckOnlyChar(string value)
         {
             for (int i = 0; i < value.Length; i++)
@@ -57,11 +65,26 @@ namespace BiggerConsoleAPp
             return true;
         }
 
-        public int Validation(string value)
+        /* min. 2 soz olmagini ve min. her sozun 3 herfden ibaret olmagini check edir.
+        ve elece yalniz char olmagini da check edir. */
+        public bool CheckWords(string value)
         {
-            string[] abc =  value.Split(new string[] { " " }, StringSplitOptions.None)
- ;
-            return abc.Length;
+            string[] wordArr = value.Split(new string[] { " " }, StringSplitOptions.None);
+
+            if (wordArr.Length >= 2)
+            {
+                foreach (var item in wordArr)
+                {
+                    if (item.Length < 3 || !CheckOnlyChar(item))
+                    {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            return false;
+
         }
     }
 }

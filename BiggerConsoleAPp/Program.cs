@@ -10,9 +10,8 @@ namespace BiggerConsoleAPp
     {
         static void Main(string[] args)
         {
-            Employee emo = new Employee("Salam");
-            int count = emo.Validation("salam necesen sag");
-            Console.WriteLine(count);
+            Employee emo = new Employee("saaa Agil saaa",  100 );
+            emo.infoo();
 
             //foreach (var item in emo.Validation("salam necesen sag")) {
             //    Console.WriteLine(item);
