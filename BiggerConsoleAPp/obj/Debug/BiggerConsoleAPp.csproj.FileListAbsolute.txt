@@ -1,0 +1,7 @@
+C:\Users\Ezizchik\source\repos\BiggerConsoleAPp\BiggerConsoleAPp\bin\Debug\BiggerConsoleAPp.exe.config
+C:\Users\Ezizchik\source\repos\BiggerConsoleAPp\BiggerConsoleAPp\bin\Debug\BiggerConsoleAPp.exe
+C:\Users\Ezizchik\source\repos\BiggerConsoleAPp\BiggerConsoleAPp\bin\Debug\BiggerConsoleAPp.pdb
+C:\Users\Ezizchik\source\repos\BiggerConsoleAPp\BiggerConsoleAPp\obj\Debug\BiggerConsoleAPp.csproj.AssemblyReference.cache
+C:\Users\Ezizchik\source\repos\BiggerConsoleAPp\BiggerConsoleAPp\obj\Debug\BiggerConsoleAPp.csproj.CoreCompileInputs.cache
+C:\Users\Ezizchik\source\repos\BiggerConsoleAPp\BiggerConsoleAPp\obj\Debug\BiggerConsoleAPp.exe
+C:\Users\Ezizchik\source\repos\BiggerConsoleAPp\BiggerConsoleAPp\obj\Debug\BiggerConsoleAPp.pdb

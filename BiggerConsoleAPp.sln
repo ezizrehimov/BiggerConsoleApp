@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34009.444
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BiggerConsoleAPp", "BiggerConsoleAPp\BiggerConsoleAPp.csproj", "{3D48DD28-7B9C-4B99-866A-60C5485D061E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3D48DD28-7B9C-4B99-866A-60C5485D061E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D48DD28-7B9C-4B99-866A-60C5485D061E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D48DD28-7B9C-4B99-866A-60C5485D061E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D48DD28-7B9C-4B99-866A-60C5485D061E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A2E8A6BB-68F9-4C0F-87CB-39DEF602408E}
+	EndGlobalSection
+EndGlobal
