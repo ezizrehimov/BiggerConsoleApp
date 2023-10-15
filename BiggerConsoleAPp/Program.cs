@@ -106,9 +106,27 @@ namespace BiggerConsoleAPp
             {
                 // Iscilerin siyahisini gostermek 
                 case 1:
-                    Console.Write("Spesifik qrupa gore isteyirsizse, qrup nomresini daxil edin. Eger istemirsinizse, bosh buraxin: ");
-                    string filterGroupNo = Console.ReadLine();
-                    if (string.IsNullOrWhiteSpace(filterGroupNo))
+                    Console.WriteLine("Spesifik qrupa gore isteyirsizse, qrup nomresini daxil edin. Eger istemirsinizse, bosh buraxin");
+
+                    string filterGroupTypeStr;
+                    int filtergroupType;
+                    do
+                    {
+                        Console.Write("Qrup novunu daxil edin - (Programming - 1, Design - 2, System - 3): ");
+                        filterGroupTypeStr = Console.ReadLine();
+
+                    }
+                    while ((!int.TryParse(filterGroupTypeStr, out filtergroupType) || !(filtergroupType >= 1 && filtergroupType <= 3))
+                    && !(string.IsNullOrEmpty(filterGroupTypeStr)));
+
+
+
+                    GroupType filterGroup;
+                    if (filtergroupType == 1) filterGroup = GroupType.Programming;
+                    else if (filtergroupType == 2) filterGroup = GroupType.Design;
+                    else filterGroup = GroupType.System;
+
+                    if (filtergroupType == 0)
                     {
                         foreach (var student in university.Students)
                         {
@@ -118,21 +136,11 @@ namespace BiggerConsoleAPp
                     }
                     else
                     {
-                        foreach (var student in university.Students.Where(s => s.GroupNo == filterGroupNo))
+                        foreach (var student in university.Students.Where(s => s.GroupType == filterGroup))
                         {
                             student.getInfo();
                         }
                     }
-
-                    // bu 1ci variant idi :D
-
-                    //Console.Write("Qrup nomresin daxil edin: ");
-                    //string groupNo = Console.ReadLine();
-
-                    //foreach (var student in university.Students.Where(s => s.GroupNo == groupNo))
-                    //{
-                    //    student.getInfo();
-                    //}
 
                     break;
 
@@ -146,7 +154,7 @@ namespace BiggerConsoleAPp
                     int groupType;
                     do
                     {
-                        Console.WriteLine("Qrup novunu daxil edin - (Programming - 1, Design - 2, System - 3): ");
+                        Console.Write("Qrup novunu daxil edin - (Programming - 1, Design - 2, System - 3): ");
                         groupTypeStr = Console.ReadLine();
                     }
                     while (!int.TryParse(groupTypeStr, out groupType) || !(groupType >= 1 && groupType <= 3));
