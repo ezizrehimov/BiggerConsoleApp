@@ -53,6 +53,8 @@ namespace BiggerConsoleAPp
             Name = name;
             WorkerLimit = workerLimit;
             SalaryLimit = salaryLimit;
+            Employees = new List<Employee>();
+            Students = new List<Student>();
 
         }
 
@@ -75,13 +77,26 @@ namespace BiggerConsoleAPp
 
         public double CalcStudentsAverage(string groupNo)
         {
+            int totalPoints;
+            if (groupNo.Contains("#empty"))
+            {
+                if (Students.Count == 0)
+                {
+                    return 0;
+                }
+
+                totalPoints = Students.Sum(s => s.Point);
+                return totalPoints / Students.Count;
+
+            }
+
             List<Student> listStudents = Students.Where(s => s.GroupNo == groupNo).ToList();
             if (listStudents.Count == 0)
             {
                 return 0;
             }
 
-            int totalPoints = listStudents.Sum(s => s.Point);
+            totalPoints = listStudents.Sum(s => s.Point);
             return totalPoints / listStudents.Count;
         }
 
@@ -98,10 +113,57 @@ namespace BiggerConsoleAPp
             }
         }
 
+        public void UpdateEmployee(string employeeNo, double newSalary, string newPosition)
+        {
+            Employee employee = Employees.FirstOrDefault(e => e.No == employeeNo);
+            if (employee != null)
+            {
+                employee.Salary = newSalary;
+                employee.Position = newPosition;
+                Console.WriteLine("İşçinin maaşı və vəzifəsi yeniləndi.");
+            }
+            else
+            {
+                Console.WriteLine("İşçi tapılmadı.");
+            }
+        }
+
+        public void DeleteEmployee(string employeeNo)
+        {
+            var employee = Employees.FirstOrDefault(e => e.No == employeeNo);
+            if (employee != null)
+            {
+                Employees.Remove(employee);
+                Console.WriteLine("İşçi silindi.");
+            }
+            else
+            {
+                Console.WriteLine("İşçi tapılmadı.");
+            }
+        }
+
+
         public void AddStudent(Student student)
         {
             Students.Add(student);
             Console.WriteLine("Elave olundu.");
+        }
+        public void StudentUpdate(string groupNo, string newGroupNo)
+        {
+            var students = Students.Where(s => s.GroupNo == groupNo).ToList();
+            if (students.Count > 0)
+            {
+                foreach (var student in students)
+                {
+                    student.GroupNo = newGroupNo;
+                    Console.WriteLine("Qrup nomresi deyisdirildi.");
+
+                }
+            }
+            else
+            {
+                Console.WriteLine("Telebe tapilmadi.");
+            }
         }
 
     }

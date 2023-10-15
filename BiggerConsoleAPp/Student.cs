@@ -39,7 +39,7 @@ namespace BiggerConsoleAPp
         // Telebeler haqqinda melumat
         public void getInfo()
         {
-            Console.WriteLine($"Telebe nomresi: {GroupNo},\n" +
+            Console.WriteLine($"Qrup nomresi: {GroupNo},\n" +
                 $"Ad ve soyad: {Fullname},\n" +
                 $"Qrup novu: {GroupType},\n" +
                 $"Bal: {Point}");
