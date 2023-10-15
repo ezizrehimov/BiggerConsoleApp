@@ -15,6 +15,11 @@ namespace BiggerConsoleAPp
            
             emp.getInfo();
 
+            Console.WriteLine(" = = = = = = = ");
+
+            Student stu = new Student("ez rehimov", GroupType.Design, 190);
+
+            stu.getInfo();
            
             //foreach (var item in emo.Validation("salam necesen sag")) {
             //    Console.WriteLine(item);

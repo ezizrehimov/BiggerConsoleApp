@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BiggerConsoleAPp
 {
-    internal class Employee
+    internal class Employee : Validation
     {
 
         public static int id = 1000;
@@ -55,7 +55,7 @@ namespace BiggerConsoleAPp
         public Employee(string fullname, string position, double salary, Department department, EmployeeType employeeType)
         {
             id++;
-            No = EmployeeNo(department, id);
+            No = employeeNo(department, id);
             Fullname = fullname;
             Position = position;
             Salary = salary;
@@ -76,48 +76,14 @@ namespace BiggerConsoleAPp
                 $"Ischi novu: {EmployeeType}");
         }
 
-
-
-        // yalniz herflerden ibaret olmagini check edir.
-        public bool CheckOnlyChar(string value)
-        {
-            for (int i = 0; i < value.Length; i++)
-            {
-
-                if (!Char.IsLetter(value[i]))
-                {
-                    return false;
-                }
-
-            }
-            return true;
-        }
-
-        /* min. 2 soz olmagini ve min. her sozun 3 herfden ibaret olmagini check edir.
-        ve elece yalniz char olmagini da check edir. */
-        public bool CheckWords(string value)
-        {
-            string[] wordArr = value.Split(new string[] { " " }, StringSplitOptions.None);
-
-            if (wordArr.Length >= 2)
-            {
-                foreach (var item in wordArr)
-                {
-                    if (item.Length < 3 || !CheckOnlyChar(item))
-                    {
-                        return false;
-                    }
-                }
-                return true;
-            }
-
-            return false;
-
-        }
-
         // employee No uchun validation
-        public string EmployeeNo(Department department, int id)
+        public string employeeNo(Department department, int id)
         {
+            if (department != 0)
+            {
+                return department.ToString().Substring(0, 3).ToUpper() + id;
+
+            }
             return department.ToString().Substring(0, 2).ToUpper() + id;
         }
     }
