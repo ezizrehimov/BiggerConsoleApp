@@ -11,16 +11,9 @@ namespace BiggerConsoleAPp
         static void Main(string[] args)
         {
 
-            Employee emp = new Employee("aziz rahimov", "sadas", 300, Department.IT, EmployeeType.Parttime);
-           
-            emp.getInfo();
+            University uni = new University("ez", 121, 121);
 
-            Console.WriteLine(" = = = = = = = ");
-
-            Student stu = new Student("ez rehimov", GroupType.Design, 190);
-
-            stu.getInfo();
-           
+            uni.info();
             //foreach (var item in emo.Validation("salam necesen sag")) {
             //    Console.WriteLine(item);
             //}
