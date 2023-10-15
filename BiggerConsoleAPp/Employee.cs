@@ -13,6 +13,7 @@ namespace BiggerConsoleAPp
         public static int id = 1000;
         public string No { get; set; }
 
+        // fullName uchun encapsulation
         private string _fullName;
         public string Fullname
         {
@@ -24,8 +25,8 @@ namespace BiggerConsoleAPp
             }
         }
 
+        // position uchun encapsulation
         private string _position;
-
         public string Position
         {
             get { return _position; }
@@ -36,6 +37,7 @@ namespace BiggerConsoleAPp
             }
         }
 
+        // salary uchun encapsulation
         private double _salary;
         public double Salary
         {
@@ -47,25 +49,31 @@ namespace BiggerConsoleAPp
             }
         }
 
-        public string DepartmentName { get; set; }
-        public string EmployeeType { get; set; }
-        public Employee(string departmentName)
+        public Department DepartmentName { get; set; }
+        public EmployeeType EmployeeType { get; set; }
+
+        public Employee(string fullname, string position, double salary, Department department, EmployeeType employeeType)
         {
             id++;
-            DepartmentName = departmentName;
-
-            No = DepartmentName.Substring(0, 2).ToUpper() + id;
-        }
-
-        public Employee(string fullName, double salary)
-        {
+            No = EmployeeNo(department, id);
+            Fullname = fullname;
+            Position = position;
             Salary = salary;
-            Fullname = fullName;
+            DepartmentName = department;
+            EmployeeType = employeeType;
         }
 
-        public void info()
+
+        // Ischiler haqqinda melumat
+        public void getInfo()
         {
-            Console.WriteLine(Fullname, No, DepartmentName);
+
+            Console.WriteLine($"Ischi nomresi: {No},\n" +
+                $"Ad ve soyad: {Fullname},\n" +
+                $"Pozisiya: {Position},\n" +
+                $"Maash: {Salary},\n" +
+                $"Department: {DepartmentName},\n" +
+                $"Ischi novu: {EmployeeType}");
         }
 
 
@@ -105,6 +113,12 @@ namespace BiggerConsoleAPp
 
             return false;
 
+        }
+
+        // employee No uchun validation
+        public string EmployeeNo(Department department, int id)
+        {
+            return department.ToString().Substring(0, 2).ToUpper() + id;
         }
     }
 }
