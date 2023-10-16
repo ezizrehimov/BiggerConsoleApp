@@ -75,10 +75,11 @@ namespace BiggerConsoleAPp
         }
 
 
-        public double CalcStudentsAverage(string groupNo)
+        public double CalcStudentsAverage(GroupType groupType)
         {
             int totalPoints;
-            if (groupNo.Contains("#empty"))
+
+            if (groupType == 0)
             {
                 if (Students.Count == 0)
                 {
@@ -90,7 +91,7 @@ namespace BiggerConsoleAPp
 
             }
 
-            List<Student> listStudents = Students.Where(s => s.GroupNo == groupNo).ToList();
+            List<Student> listStudents = Students.Where(s => s.GroupType == groupType).ToList();
             if (listStudents.Count == 0)
             {
                 return 0;

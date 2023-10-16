@@ -8,7 +8,7 @@ namespace BiggerConsoleAPp
 {
     internal enum GroupType
     {
-        Programming,
+        Programming = 1,
         Design,
         System
     }

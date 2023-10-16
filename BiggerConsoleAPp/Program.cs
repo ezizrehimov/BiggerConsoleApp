@@ -106,27 +106,27 @@ namespace BiggerConsoleAPp
             {
                 // Iscilerin siyahisini gostermek 
                 case 1:
-                    Console.WriteLine("Spesifik qrupa gore isteyirsizse, qrup nomresini daxil edin. Eger istemirsinizse, bosh buraxin");
+                    Console.WriteLine("Spesifik qrupa gore isteyirsizse, qrup novunu daxil edin. Eger istemirsinizse, bosh buraxin");
 
                     string filterGroupTypeStr;
-                    int filtergroupType;
+                    int filterGroupType;
                     do
                     {
                         Console.Write("Qrup novunu daxil edin - (Programming - 1, Design - 2, System - 3): ");
                         filterGroupTypeStr = Console.ReadLine();
 
                     }
-                    while ((!int.TryParse(filterGroupTypeStr, out filtergroupType) || !(filtergroupType >= 1 && filtergroupType <= 3))
+                    while ((!int.TryParse(filterGroupTypeStr, out filterGroupType) || !(filterGroupType >= 1 && filterGroupType <= 3))
                     && !(string.IsNullOrEmpty(filterGroupTypeStr)));
 
 
 
                     GroupType filterGroup;
-                    if (filtergroupType == 1) filterGroup = GroupType.Programming;
-                    else if (filtergroupType == 2) filterGroup = GroupType.Design;
+                    if (filterGroupType == 1) filterGroup = GroupType.Programming;
+                    else if (filterGroupType == 2) filterGroup = GroupType.Design;
                     else filterGroup = GroupType.System;
 
-                    if (filtergroupType == 0)
+                    if (filterGroupType == 0)
                     {
                         foreach (var student in university.Students)
                         {
@@ -195,17 +195,38 @@ namespace BiggerConsoleAPp
 
                 // Studentlerin ortalama qiymetini gostermek
                 case 4:
+                    Console.WriteLine("Spesifik qrupa gore isteyirsizse, qrup novunu daxil edin. Eger istemirsinizse, bosh buraxin");
 
-                    Console.Write("Spesifik qrupa gore isteyirsizse, qrup nomresini daxil edin. Eger istemirsinizse, bosh buraxin: ");
-                    string specificGroupNo = Console.ReadLine();
-                    if (string.IsNullOrWhiteSpace(specificGroupNo))
+                    string averageGroupTypeStr;
+                    int averageGroupType;
+                    do
                     {
-                        double average = university.CalcStudentsAverage("#empty");
+                        Console.Write("Qrup novunu daxil edin - (Programming - 1, Design - 2, System - 3): ");
+                        averageGroupTypeStr = Console.ReadLine();
+
+                    }
+                    while ((!int.TryParse(averageGroupTypeStr, out averageGroupType) || !(averageGroupType >= 1 && averageGroupType <= 3))
+                    && !(string.IsNullOrEmpty(averageGroupTypeStr)));
+
+
+
+                    GroupType averageGroup;
+                    if (averageGroupType == 1) averageGroup = GroupType.Programming;
+                    else if (averageGroupType == 2) averageGroup = GroupType.Design;
+                    else averageGroup = GroupType.System;
+
+
+
+                    if (averageGroupType == 0)
+                    {
+                        averageGroup = 0;
+                        double average = university.CalcStudentsAverage(averageGroup);
                         Console.WriteLine($"Butun telebelerin ortalama bali: {average}");
+
                     }
                     else
                     {
-                        double average = university.CalcStudentsAverage(specificGroupNo);
+                        double average = university.CalcStudentsAverage(averageGroup);
                         Console.WriteLine($"Qrupun ortalama bali: {average}");
                     }
 
