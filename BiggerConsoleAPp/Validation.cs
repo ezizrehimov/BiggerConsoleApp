@@ -48,5 +48,26 @@ namespace BiggerConsoleAPp
         }
 
 
+        // do-while - int uchun yalniz reqem daxil etmeyini check edir.
+        public void doWhileChecker_int(string consoleText, ref string valueStr, ref int value)
+        {
+            do
+            {
+                Console.Write(consoleText);
+                valueStr = Console.ReadLine();
+            }
+            while (!int.TryParse(valueStr, out value));
+        }
+
+        // do-while - double uchun yalniz reqem daxil etmeyini check edir.
+        public void doWhileChecker_double(string consoleText, ref string valueStr, ref double value)
+        {
+            do
+            {
+                Console.Write(consoleText);
+                valueStr = Console.ReadLine();
+            }
+            while (!double.TryParse(valueStr, out value));
+        }
     }
 }

@@ -10,29 +10,22 @@ namespace BiggerConsoleAPp
     {
         static void Main(string[] args)
         {
+            // Validation do-while check uchun
+            Validation validation = new Validation();
+
 
             // university uchun lazimi value-lar
             Console.Write("Universitet adini daxil edin: ");
             string uniName = Console.ReadLine();
 
-            string uniWorkerLimitStr;
-            int uniWorkerLimit;
+            string uniWorkerLimitStr = "";
+            int uniWorkerLimit = 0;
+            validation.doWhileChecker_int("Ischi limitini daxil edin: ", ref uniWorkerLimitStr, ref uniWorkerLimit);
 
-            do
-            {
-                Console.Write("Ischi limitini daxil edin: ");
-                uniWorkerLimitStr = Console.ReadLine();
-            }
-            while (!int.TryParse(uniWorkerLimitStr, out uniWorkerLimit));
 
-            string uniSalaryLimitStr;
-            double uniSalaryLimit;
-            do
-            {
-                Console.Write("Maash limitini daxil edin: ");
-                uniSalaryLimitStr = Console.ReadLine();
-            }
-            while (!double.TryParse(uniSalaryLimitStr, out uniSalaryLimit));
+            string uniSalaryLimitStr = "";
+            double uniSalaryLimit = 0;
+            validation.doWhileChecker_double("Maash limitini daxil edin: ", ref uniSalaryLimitStr, ref uniSalaryLimit);
 
             University university = new University(uniName, uniWorkerLimit, uniSalaryLimit);
 
@@ -88,6 +81,9 @@ namespace BiggerConsoleAPp
                             empChoiseStr = Console.ReadLine();
                         }
                         while (!int.TryParse(empChoiseStr, out empChoise) || !(empChoise >= 1 && empChoise <= 6));
+
+                        empMethods(empChoise, university);
+
                         break;
 
                     // Bitib
@@ -234,13 +230,24 @@ namespace BiggerConsoleAPp
             }
         }
 
-        public static void empMethods(int choise)
+        public static void empMethods(int choise, University university)
         {
 
             switch (choise)
             {
+                // Iscilerin siyahisini gostermek 
                 case 1:
+                    Console.WriteLine("Butun isciler: ");
+
+                    foreach (var employee in university.Employees)
+                    {
+                        employee.getInfo();
+                    }
+
                     break;
+
+               
+
             }
         }
     }
