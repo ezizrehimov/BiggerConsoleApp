@@ -62,7 +62,7 @@ namespace BiggerConsoleAPp
                         }
                         while (!int.TryParse(stuChoiseStr, out stuChoise) || !(stuChoise >= 1 && stuChoise <= 4));
 
-                        stuMethods(stuChoise, university);
+                        stuMethods(stuChoise, university,validation);
 
                         break;
 
@@ -96,7 +96,7 @@ namespace BiggerConsoleAPp
 
         }
 
-        public static void stuMethods(int choise, University university)
+        public static void stuMethods(int choise, University university, Validation validation)
         {
 
             switch (choise)
@@ -163,14 +163,9 @@ namespace BiggerConsoleAPp
                     else group = GroupType.System;
 
 
-                    string pointStr;
-                    int point;
-                    do
-                    {
-                        Console.Write("Bal: ");
-                        pointStr = Console.ReadLine();
-                    }
-                    while (!int.TryParse(pointStr, out point));
+                    string pointStr = "";
+                    int point = 0;
+                    validation.doWhileChecker_int("Bal: ", ref pointStr, ref point);
 
 
                     Student newStudent = new Student(fullName, group, point);
