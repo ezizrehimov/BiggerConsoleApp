@@ -117,16 +117,12 @@ namespace BiggerConsoleAPp
         public void UpdateEmployee(string employeeNo, double newSalary, string newPosition)
         {
             Employee employee = Employees.FirstOrDefault(e => e.No == employeeNo);
-            if (employee != null)
-            {
-                employee.Salary = newSalary;
-                employee.Position = newPosition;
-                Console.WriteLine("İşçinin maaşı və vəzifəsi yeniləndi.");
-            }
-            else
-            {
-                Console.WriteLine("İşçi tapılmadı.");
-            }
+
+            employee.Salary = newSalary;
+            employee.Position = newPosition;
+            Console.WriteLine("Maash ve pozisiya deyisdirildi.");
+
+
         }
 
         public void DeleteEmployee(string employeeNo)
@@ -135,11 +131,11 @@ namespace BiggerConsoleAPp
             if (employee != null)
             {
                 Employees.Remove(employee);
-                Console.WriteLine("İşçi silindi.");
+                Console.WriteLine("Silindi.");
             }
             else
             {
-                Console.WriteLine("İşçi tapılmadı.");
+                Console.WriteLine("Bele isci tapilmadi.");
             }
         }
 

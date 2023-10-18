@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -82,7 +83,7 @@ namespace BiggerConsoleAPp
                         }
                         while (!int.TryParse(empChoiseStr, out empChoise) || !(empChoise >= 1 && empChoise <= 6));
 
-                        empMethods(empChoise, university);
+                        empMethods(empChoise, university, validation);
 
                         break;
 
@@ -140,7 +141,7 @@ namespace BiggerConsoleAPp
 
                     break;
 
-                // Universitydeki iscilerin siyahisini gostermrek 
+                // Student  yaratmaq 
                 case 2:
                     Console.Write("Ad ve soyadi daxil edin: ");
                     string fullName = Console.ReadLine();
@@ -189,7 +190,7 @@ namespace BiggerConsoleAPp
 
                     break;
 
-                // Studentlerin ortalama qiymetini gostermek
+                // Studentlerin ortalama qiymetini gostermek 
                 case 4:
                     Console.WriteLine("Spesifik qrupa gore isteyirsizse, qrup novunu daxil edin. Eger istemirsinizse, bosh buraxin");
 
@@ -230,7 +231,7 @@ namespace BiggerConsoleAPp
             }
         }
 
-        public static void empMethods(int choise, University university)
+        public static void empMethods(int choise, University university, Validation validation)
         {
 
             switch (choise)
@@ -246,8 +247,126 @@ namespace BiggerConsoleAPp
 
                     break;
 
-               
+                // Universitydeki iscilerin siyahisini gostermrek
+                case 2:
 
+                    string filterDepVStr;
+                    int filterDepV;
+
+                    do
+                    {
+                        Console.Write("Deparment daxil edin - (IT - 1, Maliyye - 2, Marketing - 3): ");
+                        filterDepVStr = Console.ReadLine();
+                    }
+                    while (!int.TryParse(filterDepVStr, out filterDepV) || !(filterDepV >= 1 && filterDepV <= 3));
+
+                    Department filterDep;
+                    if (filterDepV == 1) filterDep = Department.IT;
+                    else if (filterDepV == 2) filterDep = Department.Maliyye;
+                    else filterDep = Department.Marketing;
+
+
+                    foreach (var employee in university.Employees.Where(e => e.DepartmentName == filterDep))
+                    {
+                        employee.getInfo();
+                    }
+
+                    break;
+
+                // Isci elave etmek
+                case 3:
+
+                    Console.Write("Ad ve soyadi daxil edin: ");
+                    string fullName = Console.ReadLine();
+
+                    Console.Write("Pozisiya daxil edin: ");
+                    string position = Console.ReadLine();
+
+                    string salaryStr = "";
+                    double salary = 0;
+                    validation.doWhileChecker_double("Maash daxil edin: ", ref salaryStr, ref salary);
+
+
+                    string addDepVStr;
+                    int addDepV;
+
+                    do
+                    {
+                        Console.Write("Deparment daxil edin - (IT - 1, Maliyye - 2, Marketing - 3): ");
+                        addDepVStr = Console.ReadLine();
+                    }
+                    while (!int.TryParse(addDepVStr, out addDepV) || !(addDepV >= 1 && addDepV <= 3));
+
+                    Department addDep;
+                    if (addDepV == 1) addDep = Department.IT;
+                    else if (addDepV == 2) addDep = Department.Maliyye;
+                    else addDep = Department.Marketing;
+
+
+
+                    string empTypeVStr;
+                    int empTypeV;
+
+                    do
+                    {
+                        Console.Write("Is rejimini daxil edin - (Fulltime - 1, Parttime - 2, Adjunct - 3): ");
+                        empTypeVStr = Console.ReadLine();
+                    }
+                    while (!int.TryParse(empTypeVStr, out empTypeV) || !(empTypeV >= 1 && empTypeV <= 3));
+
+                    EmployeeType addEmpType;
+                    if (empTypeV == 1) addEmpType = EmployeeType.Fulltime;
+                    else if (empTypeV == 2) addEmpType = EmployeeType.Parttime;
+                    else addEmpType = EmployeeType.Adjunct;
+
+                    Employee newEmployee = new Employee(fullName, position, salary, addDep, addEmpType);
+                    university.AddEmployee(newEmployee);
+
+                    break;
+
+                // Isci uzerinde deyisiklik etmek
+                case 4:
+                    Employee empUpdate;
+                    string editEmpNo;
+                    do
+                    {
+                        Console.Write("Deyisiklik edilecek iscinin No daxil edin: ");
+                        editEmpNo = Console.ReadLine();
+                        empUpdate = university.Employees.FirstOrDefault(e => e.No == editEmpNo);
+                    } while (empUpdate == null);
+
+                    string newSalaryStr = "";
+                    double newSalary = 0;
+                    validation.doWhileChecker_double("Yeni maash daxil edin: ", ref newSalaryStr, ref newSalary);
+
+                    Console.Write("Yeni pozisiya daxil edin: ");
+                    string newPosition = Console.ReadLine();
+                    university.UpdateEmployee(editEmpNo, newSalary, newPosition);
+
+                    break;
+
+                // Universityden isci silinmesi
+                case 5:
+
+                    Console.Write("Silinecek iscinin No daxil edin: ");
+                    string delEmpNo = Console.ReadLine();
+                    university.DeleteEmployee(delEmpNo);
+
+                    break;
+
+                // Search();
+                case 6:
+
+                    Console.Write("Axtarish uchun ad soyad daxil edin: ");
+                    string searchWord = Console.ReadLine();
+                    var foundEmp = university.Employees.Where(e => e.Fullname.Contains(searchWord)).ToList();
+                    Console.WriteLine("Tapilan isci:");
+                    foreach (var emp in foundEmp)
+                    {
+                        emp.getInfo();
+                    }
+
+                    break;
             }
         }
     }
